@@ -10,6 +10,7 @@ public class Application {
     private static List<Department> departments = new ArrayList<Department>();
     public static List<Employee> employees = new ArrayList<Employee>();
 
+
     public static Map<String, Project> projects = new HashMap<>();
 
 
@@ -86,13 +87,13 @@ public class Application {
         emp1.setFirstName("Dean");
         emp1.setLastName("Johnson");
         emp1.setEmail("djohnson@teams.com");
-        emp1.setSalary(60000.0);
         emp1.setDepartment(departments.get(2));
         emp1.setHireDate("08/21/2020");
         employees.add(emp1);
-        Employee emp2 = new Employee(002,"Angie", "Smith", "asmith@teams.com",66000, departments.get(2) , "08/21/2020" );
+        Employee emp2 = new Employee(002,"Angie", "Smith", "asmith@teams.com", departments.get(2) , "08/21/2020" );
+        emp2.raiseSalary(10);
         employees.add(emp2);
-        Employee emp3 = new Employee(003,"Margaret", "Thompson", "mthompson@teams.com", 60000.0, departments.get(0),"08/21/2020");
+        Employee emp3 = new Employee(003,"Margaret", "Thompson", "mthompson@teams.com", departments.get(0),"08/21/2020");
         employees.add(emp3);
     }
 
@@ -104,6 +105,7 @@ public class Application {
 
         for(int i = 0; i < employees.size(); i++){
             System.out.println(employees.get(i).getFullName()+ " ("+ employees.get(i).getSalary() +") " + employees.get(i).getDepartment().getName());
+
         }
 
     }
@@ -113,8 +115,9 @@ public class Application {
      */
     private static void createTeamsProject() {
         Project pro1 = new Project("TEams", "Project Management Software", "10/10/2020", "11/10/2020");
-        projects.put(employees, employees.get().getDepartment(2));
-        projects.put("TEams", pro1);
+        pro1.setTeamMembers(employees.subList(0,2));
+        projects.put(pro1.getName(), pro1);
+
 
 
 
@@ -126,7 +129,9 @@ public class Application {
      */
     private static void createLandingPageProject() {
         Project pro2 = new Project("Marketing Landing Page", "Lead Capture Landing Page for Marketing", "10/10/2020", "10/17/2020");
-        ;
+        pro2.setTeamMembers(employees.subList(2,3));
+        projects.put(pro2.getName(), pro2);
+
 
     }
 
@@ -135,6 +140,11 @@ public class Application {
      */
     private static void printProjectsReport() {
         System.out.println("\n------------- PROJECTS ------------------------------");
+        for(Map.Entry<String, Project> project : projects.entrySet()){
+            System.out.println(project.getKey() + ": " + project.getValue().getTeamMembers().size());
+        }
+
+
 
     }
 

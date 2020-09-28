@@ -61,24 +61,25 @@ public class Employee {
         salary = salary * (1.0 + percent / 100);
     }
 
-    public static double STARTING_SALARY = 60000.00;
+    public static final double STARTING_SALARY = 60000.00;
 
 
 
 
 
 
-    public Employee(long employeeId, String firstName, String lastName, String email, double salary, Department department, String hireDate) {
+    public Employee(long employeeId, String firstName, String lastName, String email, Department department, String hireDate) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.salary = salary;
         this.department = department;
         this.hireDate = hireDate;
+        this.salary = STARTING_SALARY;
 
     }
     public Employee(){
+        this.salary = STARTING_SALARY;
 
     }
 

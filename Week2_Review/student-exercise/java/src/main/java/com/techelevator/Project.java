@@ -39,6 +39,12 @@ public class Project {
  private void setDueDate(String dueDate){
      this.dueDate = dueDate;
  }
+ public List<Employee> getTeamMembers(){
+     return teamMembers;
+ }
+public void setTeamMembers(List<Employee>teamMembers){
+     this.teamMembers = teamMembers;
+}
 
  public Project(String name, String description, String startDate, String dueDate){
      this.name = name;
